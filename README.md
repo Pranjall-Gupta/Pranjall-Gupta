@@ -6,7 +6,7 @@
     <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/leet-code.svg" height="32" />
   </a>&nbsp;&nbsp;&nbsp;
 
-  <a href="https://learn.microsoft.com/en-us/users/pranjalgupta-8480/">
+  <a href="https://learn.microsoft.com/en-us/users/pranjalgupta-8480/credentials?tab=credentials-tab">
     <img src="https://img.icons8.com/color/48/microsoft.png" height="32" />
   </a>&nbsp;&nbsp;&nbsp;
 
