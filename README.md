@@ -26,14 +26,11 @@ Currently focused on **Java, system design, and Azure** while preparing for prod
 
 An AI-driven interview intelligence platform designed to bridge the gap between learning and landing the job.
 
-**Real-time Feedback**  
-Leveraging AI to analyze interview performance and technical accuracy.
+**Key Features**
+- AI-powered interview feedback
+- Backend-focused architecture
+- Concurrent mock sessions with low latency
 
-**Full-Stack Architecture**  
-Built with a focus on strong backend logic and smooth user experience.
-
-**System Design**  
-Designed to support multiple concurrent mock interview sessions with low response latency.
 
 **Focus Areas**
 
@@ -46,18 +43,14 @@ Designed to support multiple concurrent mock interview sessions with low respons
 
 # Tech Stack 🛠️
 
-### Languages
+### Languages 
 Java • Python • JavaScript
-
-### Backend
+### Backend 
 Spring Boot • REST APIs • Node.js
-
 ### Cloud
 Microsoft Azure • Azure OpenAI • App Services
-
 ### Databases
 MySQL • MongoDB
-
 ### Tools
 Docker • Git • Postman
 
@@ -90,7 +83,7 @@ Contributor to **spring-blog-api** and **f1_info_API**, focusing on API validati
 Working with the **Azure ecosystem** through the Microsoft Industry Embedded Program.
 
 **Azure**  
-AZ-900 • AI-900 • Currently preparing for AZ-104
+AZ-104 • AI-900 • Currently preparing for AZ-204
 
 Currently integrating **Azure OpenAI and App Services** into MockMate AI.
 
@@ -100,9 +93,6 @@ Currently integrating **Azure OpenAI and App Services** into MockMate AI.
 
 ### Consistent Growth
 Currently a Computer Science student at Parul University, continuously learning and building.
-
-### Clean Code
-Refactoring isn’t a chore, it’s discipline.
 
 ### Meaningful Contribution
 Interested in open-source work that solves real problems.
