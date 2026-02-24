@@ -43,17 +43,13 @@ An AI-driven interview intelligence platform designed to bridge the gap between 
 
 # Tech Stack 🛠️
 
-### Languages 
-Java • Python • JavaScript
-### Backend 
-Spring Boot • REST APIs • Node.js
-### Cloud
-Microsoft Azure • Azure OpenAI • App Services
-### Databases
-MySQL • MongoDB
-### Tools
-Docker • Git • Postman
-
+| Category | Technologies |
+| :--- | :--- |
+| **Languages** | Java • Python • JavaScript • TypeScript |
+| **Backend** | Spring Boot (Java 21) • REST APIs • Node.js • Express |
+| **Cloud & AI** | Microsoft Azure • Azure OpenAI (GPT-4o) • Azure AI Speech |
+| **Databases** | MongoDB Atlas • MySQL  |
+| **DevOps/Tools** | Docker • Git • Maven |
 ---
 
 # Featured Repositories 🛠️
