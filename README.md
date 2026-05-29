@@ -80,24 +80,14 @@ I believe in quality over quantity. My archived repos are my classroom; these ar
 - **Focus Areas:** AI-driven inventory risk assessment, scalable service/controller API design, automated data scraping, and mobile-first data visualization.
 - **Goal:** Transform scattered daily signals into actionable, data-driven insights so vendors can act quickly and maximize profitability.
 
-### 🔹 [Causa](https://github.com/Pranjall-Gupta/Causa)
-`GenAI` `Architecture`
-<br><br>
-*A failure diagnosis and observability platform designed to trace, analyze, and debug issues across distributed microservices.*
-
-- **Core Idea:** Centralizes logs, request flows, and service interactions using a unique request ID to reconstruct failure paths.
-- **Architecture:** Backend system that aggregates logs from multiple services and correlates them into a unified trace.
-- **Focus Areas:** Debugging distributed failures, request tracing, and improving system visibility.
-- **Goal:** Reduce debugging time and bring clarity to complex microservice interactions.
-
 ---
 
 ## Open Source Contributions
 
 I actively contribute to tools that solve real problems, focusing on API validation and documentation.
 
-- Merged PRs in **[spring-blog-api](https://github.com/link-to-repo)**
-- Merged PRs in **[f1_info_API](https://github.com/link-to-repo)**
+- Merged PRs in **[spring-blog-api](https://github.com/huseynovvusal/spring-blog-api)**
+- Merged PRs in **[f1_info_API](https://github.com/JAEscobedo/f1_info_API)**
 - Contributions to **[ishpreet36752/Trawell](https://github.com/ishpreet36752/Trawell)**
 
 ---
@@ -112,3 +102,17 @@ I actively contribute to tools that solve real problems, focusing on API validat
 <div align="center">
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=Pranjall-Gupta&theme=radical&hide_border=true" width="70%" />
 </div>
+
+---
+
+## Let's connect
+``` java
+/*
+ * Available for: Internships, cloud roles, open source collabs, interesting problems
+ * Response time: < 24hrs
+ * Preferred protocol: email
+ */
+```
+- **Email:** pranjal.gupta.872005@gmail.com
+- **LinkedIn:** [linkedin.com/in/pranjal-gupta1369](https://www.linkedin.com/in/pranjal-gupta1369/)
+- **LeetCode:** [leetcode.com/u/Pranjal__Gupta](https://leetcode.com/u/Pranjal__Gupta/)
