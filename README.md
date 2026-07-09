@@ -1,118 +1,220 @@
 <div align="center">
-  <h1>Hi there, I'm Pranjal Gupta <img src="https://raw.githubusercontent.com/MartinHeinz/MartinHeinz/master/wave.gif" width="30px"></h1>
-  <p><b>Backend Systems | Cloud Architecture | AI-Powered Tools</b></p>
-  
-  <a href="https://leetcode.com/u/Pranjal__Gupta/">
-    <img src="https://img.shields.io/badge/-LeetCode-FFA116?style=flat-square&logo=LeetCode&logoColor=black" alt="LeetCode">
-  </a>
-  <a href="https://www.linkedin.com/in/pranjal-gupta1369/">
-    <img src="https://img.shields.io/badge/-LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn">
-  </a>
-  <a href="https://learn.microsoft.com/en-us/users/pranjalgupta-8480/credentials">
-    <img src="https://img.shields.io/badge/-Microsoft_Learn-0078D4?style=flat-square&logo=microsoft&logoColor=white" alt="Microsoft Learn">
-  </a>
-  
-  <br>
-  <img src="https://komarev.com/ghpvc/?username=Pranjall-Gupta&color=blueviolet&style=flat-square&label=PROFILE+VIEWS" alt="Profile Views" />
+
+```
+$ whoami
+```
+
+# PRANJAL GUPTA
+
+**backend engineer — java / spring boot / azure**
+`final-year cse · parul university · class of 2027`
+
+<br>
+
+[![LeetCode](https://img.shields.io/badge/LEETCODE-000000?style=for-the-badge&logo=leetcode&logoColor=FFA116)](https://leetcode.com/u/Pranjal__Gupta/)
+[![LinkedIn](https://img.shields.io/badge/LINKEDIN-000000?style=for-the-badge&logo=linkedin&logoColor=0A66C2)](https://www.linkedin.com/in/pranjal-gupta1369/)
+[![Microsoft Learn](https://img.shields.io/badge/MS_LEARN-000000?style=for-the-badge&logo=microsoft&logoColor=0078D4)](https://learn.microsoft.com/en-us/users/pranjalgupta-8480/credentials)
+[![Email](https://img.shields.io/badge/EMAIL-000000?style=for-the-badge&logo=gmail&logoColor=EA4335)](mailto:pranjal.gupta.872005@gmail.com)
+
 </div>
+
+<br>
+
+```
+$ cat status.log
+```
+
+```diff
++ open to    : internships, SDE roles (Java/Spring/Azure) — Pune / Mumbai / Remote
++ building   : personal portfolio — neo-brutalist, Spider-Man x Itachi
++ shipping   : MockMate-AI, LexSimplify
++ studying   : system design, distributed systems
++ next milestone : campus placements, Aug 2026
+```
+
+<br>
 
 ---
 
-## `curl -X GET https://api.pranjal.dev/v1/profile`
+## `$ ls projects/ --sort=featured`
+
+<br>
+
+### 01 · MockMate-AI
+**AI interview intelligence platform — Java 21 · Spring Boot 3.5 · Azure OpenAI (GPT-4o) · Azure Speech SDK · React 18**
+
+Full voice-to-insight interview simulator. Speaks the question, listens to the answer, scores it — no scripted feedback.
+
+```
+> 6 AI-driven feedback modules
+> 7–11s voice-to-insight response latency
+> 150+ scenario library modeled on real production-incident interviews
+> circuit-breaker resilience for external AI/speech calls
+```
+
+`Java` `Spring Boot` `Azure OpenAI` `Azure Speech SDK` `React` `MongoDB`
+[**→ repo**](https://github.com/Pranjall-Gupta/MockMate-AI)
+
+<br>
+
+### 02 · LexSimplify
+**RAG-based legal contract analyzer for Indian employment contracts — Spring Boot · Azure OpenAI · Azure AI Search**
+
+Freshers sign contracts they don't read because they can't parse them. This does the reading.
+
+```
+> 3-tier output: Legal Position / Judicial Interpretation / Plain English
+> hallucination-guard: every quoted clause verified as a literal
+  substring of the source document before it's shown to the user
+> RAG grounded on a 14-file legal knowledge base of acts & case law
+```
+
+`Spring Boot` `Azure OpenAI` `Azure AI Search` `RAG` `React`
+[**→ repo**](https://github.com/Pranjall-Gupta/LexSimplify)
+
+<br>
+
+### 03 · Gotchu
+**Campus peer-to-peer parcel delivery marketplace — Spring Boot · MongoDB · React Native**
+
+```
+> two-sided marketplace: requesters post, runners accept
+> UPI-to-UPI direct payment, no platform escrow
+> two-way reputation system
+```
+`Spring Boot` `MongoDB` `React Native`
+[**→ repo**](https://github.com/Pranjall-Gupta/Gotchu)
+
+<br>
+
+### 04 · RecontiQ
+**GST reconciliation engine — React · TypeScript · Zustand**
+
+```
+> fully client-side, deterministic simulation
+> zero backend dependency by design
+```
+`React` `TypeScript` `Zustand`
+[**→ repo**](https://github.com/Pranjall-Gupta/RecontiQ)
+
+<br>
+
+---
+
+## `$ git log --author="Pranjal" --grep="open-source"`
+
+```diff
++ spring-boot-admin      #5321  merged   MS Teams webhook migration
+                                          (Office 365 Connectors retirement fix)
++ spring-blog-api        #57,#59 merged  Swagger path fixes, API discoverability
++ f1_info_API            #16     merged
+```
+
+Currently on the **GSSoC 2026 Open Source track** — depth over breadth, one or two repos, done properly.
+
+<br>
+
+---
+
+## `$ cat certifications.json`
 
 ```json
 {
-  "name": "Pranjal Gupta",
-  "education": "CS @ Parul University ('27)",
-  "program": "Microsoft Industry Embedded Program",
-  "role": "Backend & Cloud Engineer",
-  "focus": [
-    "Building scalable backend systems",
-    "AI-powered applications (Azure OpenAI)",
-    "Real-world production architecture"
-  ],
-  "certifications": [
-    "AZ-900", "AI-900", "PL-900", "PL-300", 
-    "Oracle AI Vector Search"
-  ],
-  "achievements": [
-    "Top 30% LeetCode Contests",
-    "Smart India Hackathon '25 Shortlist"
-  ]
+  "cloud": ["AZ-104", "DP-100"],
+  "data_ai": ["Oracle AI Vector Search Professional", "PL-300"],
+  "foundational": ["AZ-900", "AI-900", "PL-900"],
+  "cs_core": ["NPTEL Computer Networks — Silver Elite, IIT"]
 }
 ```
-## Core Tech Stack
-<p align="left">
-<img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" />
-<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
-<img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" />
-<img src="https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring&logoColor=white" />
-<img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" />
 
-
-<img src="https://img.shields.io/badge/Microsoft_Azure-0089D6?style=for-the-badge&logo=microsoft-azure&logoColor=white" />
-<img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" />
-<img src="https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white" />
-<img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" />
-</p>
-
-## The Workshop (Current Projects)
-
-I believe in quality over quantity. My archived repos are my classroom; these are my workshop.
-
-### 🔹 [MockMate AI](https://github.com/Pranjall-Gupta/MockMate-AI)
-`Java` `Spring Boot` `Azure OpenAI` `Microservices` `System Design`
-<br><br>
-*An AI-driven interview intelligence platform designed to bridge the gap between learning and landing the job.*
-
-- **Core Idea:** Simulates real-world technical interviews by providing concurrent, low-latency mock sessions with instant, AI-generated actionable feedback.
-- **Architecture:** Backend-focused microservices architecture integrating Azure OpenAI (GPT-4o) and Azure AI Speech for real-time conversational data flow.
-- **Focus Areas:** Low-latency concurrent processing, LLM prompt engineering, scalable data flow, and seamless cloud integration.
-- **Goal:** Deliver an accessible, highly responsive, and intelligent interview preparation tool that scales efficiently under heavy user load.
-
-### 🔹 [StreetVendorX](https://github.com/StreetVendorX)
-`Full-Stack` `React/TypeScript` `Node.js` `AI-Assisted`
-<br><br>
-*An end-to-end management platform empowering street vendors to plan inventory, track finances, and monitor market prices.*
-
-- **Core Idea:** Centralizes daily business operations by combining AI-assisted inventory recommendations with real-time market insights and financial tracking.
-- **Architecture:** Full-stack monorepo featuring a React/Vite frontend and a modular Node.js/Express backend (MongoDB/Mongoose), complete with scheduled data ingestion pipelines for syncing external market APIs.
-- **Focus Areas:** AI-driven inventory risk assessment, scalable service/controller API design, automated data scraping, and mobile-first data visualization.
-- **Goal:** Transform scattered daily signals into actionable, data-driven insights so vendors can act quickly and maximize profitability.
-
----
-
-## Open Source Contributions
-
-I actively contribute to tools that solve real problems, focusing on API validation and documentation.
-
-- Merged PRs in **[spring-blog-api](https://github.com/huseynovvusal/spring-blog-api)**
-- Merged PRs in **[f1_info_API](https://github.com/JAEscobedo/f1_info_API)**
-- Contributions to **[ishpreet36752/Trawell](https://github.com/ishpreet36752/Trawell)**
-
----
-
-## GitHub Analytics
-
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=Pranjall-Gupta&show_icons=true&theme=radical&hide_border=true" width="48%" height="190px"/>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Pranjall-Gupta&layout=compact&theme=radical&hide_border=true" width="48%" height="190px" />
-</div>
 <br>
-<div align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Pranjall-Gupta&theme=radical&hide_border=true" width="70%" />
-</div>
 
 ---
 
-## Let's connect
-``` java
-/*
- * Available for: Internships, cloud roles, open source collabs, interesting problems
- * Response time: < 24hrs
- * Preferred protocol: email
- */
+## `$ stack --grouped`
+
+<table>
+<tr>
+<td valign="top" width="33%">
+
+**Languages**
 ```
-- **Email:** pranjal.gupta.872005@gmail.com
-- **LinkedIn:** [linkedin.com/in/pranjal-gupta1369](https://www.linkedin.com/in/pranjal-gupta1369/)
-- **LeetCode:** [leetcode.com/u/Pranjal__Gupta](https://leetcode.com/u/Pranjal__Gupta/)
+Java (primary)
+TypeScript
+Python
+SQL
+```
+
+</td>
+<td valign="top" width="33%">
+
+**Backend & Cloud**
+```
+Spring Boot
+Node.js / Express
+Microsoft Azure
+Resilience4j
+Docker
+```
+
+</td>
+<td valign="top" width="33%">
+
+**Data & Frontend**
+```
+MongoDB · MySQL
+PostgreSQL
+React / TypeScript
+Azure AI Search
+```
+
+</td>
+</tr>
+</table>
+
+<br>
+
+---
+
+## `$ stats --live`
+
+<div align="center">
+
+<img height="165em" src="https://github-readme-stats.vercel.app/api?username=Pranjall-Gupta&show_icons=true&hide_border=true&theme=nightowl&bg_color=0d1117&title_color=e63946&icon_color=e63946&text_color=cfd8dc"/>
+<img height="165em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Pranjall-Gupta&layout=compact&hide_border=true&theme=nightowl&bg_color=0d1117&title_color=e63946&text_color=cfd8dc"/>
+
+<br>
+
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=Pranjall-Gupta&hide_border=true&theme=nightowl&background=0d1117&ring=e63946&fire=e63946&currStreakLabel=e63946"/>
+
+<br>
+
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=Pranjall-Gupta&theme=react-dark&bg_color=0d1117&color=e63946&line=e63946&point=cfd8dc&hide_border=true"/>
+
+</div>
+
+<br>
+
+<div align="center">
+
+### `$ contribution_snake --render`
+
+<img src="https://raw.githubusercontent.com/Pranjall-Gupta/Pranjall-Gupta/output/github-contribution-grid-snake-dark.svg" width="100%"/>
+
+</div>
+
+<br>
+
+---
+
+<div align="center">
+
+```
+$ echo $CONTACT
+```
+
+**pranjal.gupta.872005@gmail.com** · response time < 24h
+
+<sub>this readme is a work in progress, same as everything else here</sub>
+
+</div>
