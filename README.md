@@ -11,10 +11,11 @@ $ whoami
 
 <br>
 
-[![LeetCode](https://img.shields.io/badge/LEETCODE-000000?style=for-the-badge&logo=leetcode&logoColor=FFA116)](https://leetcode.com/u/Pranjal__Gupta/)
-[![LinkedIn](https://img.shields.io/badge/LINKEDIN-000000?style=for-the-badge&logo=linkedin&logoColor=0A66C2)](https://www.linkedin.com/in/pranjal-gupta1369/)
-[![Microsoft Learn](https://img.shields.io/badge/MS_LEARN-000000?style=for-the-badge&logo=microsoft&logoColor=0078D4)](https://learn.microsoft.com/en-us/users/pranjalgupta-8480/credentials)
-[![Email](https://img.shields.io/badge/EMAIL-000000?style=for-the-badge&logo=gmail&logoColor=EA4335)](mailto:pranjal.gupta.872005@gmail.com)
+[![Portfolio](https://img.shields.io/badge/PORTFOLIO-000000?style=for-the-badge&logo=vercel&logoColor=e63946)](https://portfolio-pranjalg.vercel.app/)
+[![LeetCode](https://img.shields.io/badge/LEETCODE-000000?style=for-the-badge&logo=leetcode&logoColor=e63946)](https://leetcode.com/u/Pranjal__Gupta/)
+[![LinkedIn](https://img.shields.io/badge/LINKEDIN-000000?style=for-the-badge&logo=linkedin&logoColor=e63946)](https://www.linkedin.com/in/pranjal-gupta1369/)
+[![Microsoft Learn](https://img.shields.io/badge/MS_LEARN-000000?style=for-the-badge&logo=microsoft&logoColor=e63946)](https://learn.microsoft.com/en-us/users/pranjalgupta-8480/credentials)
+[![Email](https://img.shields.io/badge/EMAIL-000000?style=for-the-badge&logo=gmail&logoColor=e63946)](mailto:pranjal.gupta.872005@gmail.com)
 
 </div>
 
@@ -180,16 +181,16 @@ Azure AI Search
 
 <div align="center">
 
-<img height="165em" src="https://github-readme-stats.vercel.app/api?username=Pranjall-Gupta&show_icons=true&hide_border=true&theme=nightowl&bg_color=0d1117&title_color=e63946&icon_color=e63946&text_color=cfd8dc"/>
-<img height="165em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Pranjall-Gupta&layout=compact&hide_border=true&theme=nightowl&bg_color=0d1117&title_color=e63946&text_color=cfd8dc"/>
+<img height="165em" alt="Pranjal's GitHub stats" src="https://github-readme-stats.vercel.app/api?username=Pranjall-Gupta&show_icons=true&hide_border=true&theme=nightowl&bg_color=0d1117&title_color=e63946&icon_color=e63946&text_color=cfd8dc"/>
+<img height="165em" alt="Pranjal's most used languages" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Pranjall-Gupta&layout=compact&hide_border=true&theme=nightowl&bg_color=0d1117&title_color=e63946&text_color=cfd8dc"/>
 
 <br>
 
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=Pranjall-Gupta&hide_border=true&theme=nightowl&background=0d1117&ring=e63946&fire=e63946&currStreakLabel=e63946"/>
+<img alt="Pranjal's GitHub streak" src="https://streak-stats.demolab.com/?user=Pranjall-Gupta&hide_border=true&theme=nightowl&background=0d1117&ring=e63946&fire=e63946&currStreakLabel=e63946"/>
 
 <br>
 
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=Pranjall-Gupta&theme=react-dark&bg_color=0d1117&color=e63946&line=e63946&point=cfd8dc&hide_border=true"/>
+<img alt="Pranjal's contribution activity graph" src="https://github-readme-activity-graph.vercel.app/graph?username=Pranjall-Gupta&theme=react-dark&bg_color=0d1117&color=e63946&line=e63946&point=cfd8dc&hide_border=true"/>
 
 </div>
 
@@ -199,7 +200,7 @@ Azure AI Search
 
 ### `$ contribution_snake --render`
 
-<img src="https://raw.githubusercontent.com/Pranjall-Gupta/Pranjall-Gupta/output/github-contribution-grid-snake-dark.svg" width="100%"/>
+<img alt="Animated snake traversing Pranjal's contribution grid" src="https://raw.githubusercontent.com/Pranjall-Gupta/Pranjall-Gupta/output/github-contribution-grid-snake-dark.svg" width="100%"/>
 
 </div>
 
