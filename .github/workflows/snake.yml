@@ -1,27 +1,33 @@
-name: Generate Snake Animation
+name: Generate Snake
 
 on:
   schedule:
-    - cron: "0 0 * * *"   # runs once a day at midnight UTC
-  workflow_dispatch:        # lets you trigger it manually from the Actions tab
+    - cron: "0 */6 * * *"   # every 6 hours
+  workflow_dispatch:         # lets you trigger it manually from the Actions tab
   push:
-    branches:
-      - main                # regenerates on every push to main, remove if noisy
+    branches: [ main ]
+    paths:
+      - "scripts/generate-snake.mjs"
+      - ".github/workflows/snake.yml"
 
 permissions:
   contents: write
 
 jobs:
-  generate:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Generate snake SVGs
-        uses: Platane/snk@v3
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
         with:
-          github_user_name: Pranjall-Gupta
-          outputs: |
-            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
-            dist/github-contribution-grid-snake-dark.svg?palette=github-dark&color_snake=%23dc2626
+          node-version: 20
+
+      - name: Generate snake SVG
+        run: node scripts/generate-snake.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USER_NAME: ${{ github.repository_owner }}
 
       - name: Push to output branch
         uses: crazy-max/ghaction-github-pages@v4

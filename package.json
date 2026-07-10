@@ -1,0 +1,13 @@
+{
+  "name": "profile-snake",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Generates a static contribution grid with a decorative snake overlay that traverses without eating cells.",
+  "scripts": {
+    "generate": "node scripts/generate-snake.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
