@@ -181,8 +181,7 @@ Azure AI Search
 
 <div align="center">
 
-<img height="165em" alt="Pranjal's GitHub stats" src="https://github-readme-stats.vercel.app/api?username=Pranjall-Gupta&show_icons=true&hide_border=true&theme=nightowl&bg_color=0d1117&title_color=e63946&icon_color=e63946&text_color=cfd8dc"/>
-<img height="165em" alt="Pranjal's most used languages" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Pranjall-Gupta&layout=compact&hide_border=true&theme=nightowl&bg_color=0d1117&title_color=e63946&text_color=cfd8dc"/>
+<img height="165em" alt="Pranjal's GitHub stats" src="https://github-readme-stats-tau-two-88.vercel.app/api?username=Pranjall-Gupta&show_icons=true&hide_border=true&theme=nightowl&bg_color=0d1117&title_color=e63946&icon_color=e63946&text_color=cfd8dc&hide_rank=true"/>
 
 <br>
 
