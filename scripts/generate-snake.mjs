@@ -1,274 +1,179 @@
-import fs from 'fs';
-import path from 'path';
+#!/usr/bin/env node
+/**
+ * Generates an SVG of the GitHub contribution grid with a decorative snake
+ * that TRAVELS OVER the cells without ever changing their color.
+ *
+ * The grid is rendered once, statically. The snake is a separate layer of
+ * small squares animated along an SVG <path> with <animateMotion>, so the
+ * two never interact.
+ */
 
-// Target user from environment or fallback
-const USERNAME = process.env.GITHUB_USER_NAME || 'Pranjall-Gupta';
+import { writeFileSync, mkdirSync } from "node:fs";
 
-// Color Palette for Dark Theme
-const COLORS = {
-  'NONE': '#161b22',
-  'FIRST_QUARTILE': '#0e4429',
-  'SECOND_QUARTILE': '#006d32',
-  'THIRD_QUARTILE': '#26a641',
-  'FOURTH_QUARTILE': '#39d353'
-};
+const GITHUB_USER = process.env.GITHUB_USER_NAME || process.env.GITHUB_REPOSITORY_OWNER;
+const TOKEN = process.env.GITHUB_TOKEN;
 
-// SVG Grid Settings
-const CELL_SIZE = 10;
-const CELL_GAP = 2;
-const PADDING_X = 20;
-const PADDING_Y = 20;
+if (!GITHUB_USER) throw new Error("Missing GITHUB_USER_NAME env var");
+if (!TOKEN) throw new Error("Missing GITHUB_TOKEN env var");
 
-// Generate mock data in case API fails or GITHUB_TOKEN is not provided
-function generateMockData() {
-  const weeks = [];
-  const now = new Date();
-  const startDate = new Date(now.getTime() - 365 * 24 * 60 * 60 * 1000);
-  
-  // Align to Sunday
-  const startDay = startDate.getDay();
-  startDate.setDate(startDate.getDate() - startDay);
-  
-  let currentDate = new Date(startDate);
-  const levels = ['NONE', 'FIRST_QUARTILE', 'SECOND_QUARTILE', 'THIRD_QUARTILE', 'FOURTH_QUARTILE'];
-  
-  for (let w = 0; w < 53; w++) {
-    const contributionDays = [];
-    for (let d = 0; d < 7; d++) {
-      const rand = Math.random();
-      let level = 'NONE';
-      if (rand > 0.85) level = 'FOURTH_QUARTILE';
-      else if (rand > 0.7) level = 'THIRD_QUARTILE';
-      else if (rand > 0.5) level = 'SECOND_QUARTILE';
-      else if (rand > 0.35) level = 'FIRST_QUARTILE';
-      
-      contributionDays.push({
-        contributionLevel: level,
-        color: COLORS[level],
-        date: currentDate.toISOString().split('T')[0],
-        weekday: d
-      });
-      currentDate.setDate(currentDate.getDate() + 1);
-    }
-    weeks.push({ contributionDays });
-  }
-  
-  return {
-    user: {
-      contributionsCollection: {
-        contributionCalendar: {
-          weeks
-        }
-      }
-    }
-  };
-}
-
-async function fetchContributions() {
-  const token = process.env.GITHUB_TOKEN;
-  if (!token) {
-    console.warn('GITHUB_TOKEN not found in environment. Falling back to mock data.');
-    return generateMockData();
-  }
-
-  const query = `
-    query($login: String!) {
-      user(login: $login) {
-        contributionsCollection {
-          contributionCalendar {
-            weeks {
-              contributionDays {
-                contributionLevel
-                color
-                date
-                weekday
-              }
-            }
+const QUERY = `
+query($userName: String!) {
+  user(login: $userName) {
+    contributionsCollection {
+      contributionCalendar {
+        weeks {
+          contributionDays {
+            contributionCount
+            contributionLevel
+            date
+            weekday
           }
         }
       }
     }
-  `;
-
-  try {
-    const response = await fetch('https://api.github.com/graphql', {
-      method: 'POST',
-      headers: {
-        'Authorization': `bearer ${token}`,
-        'Content-Type': 'application/json',
-        'User-Agent': 'node-fetch'
-      },
-      body: JSON.stringify({
-        query,
-        variables: { login: USERNAME }
-      })
-    });
-
-    if (!response.ok) {
-      throw new Error(`GitHub API returned status ${response.status}`);
-    }
-
-    const json = await response.json();
-    if (json.errors) {
-      throw new Error(`GraphQL Errors: ${JSON.stringify(json.errors)}`);
-    }
-
-    return json.data;
-  } catch (error) {
-    console.error('Failed to fetch from GitHub API:', error.message);
-    console.warn('Falling back to mock data.');
-    return generateMockData();
   }
+}`;
+
+async function fetchContributions(userName) {
+  const res = await fetch("https://api.github.com/graphql", {
+    method: "POST",
+    headers: {
+      Authorization: `bearer ${TOKEN}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ query: QUERY, variables: { userName } }),
+  });
+
+  if (!res.ok) {
+    throw new Error(`GitHub API error: ${res.status} ${await res.text()}`);
+  }
+
+  const json = await res.json();
+  if (json.errors) {
+    throw new Error(`GraphQL error: ${JSON.stringify(json.errors)}`);
+  }
+  return json.data.user.contributionsCollection.contributionCalendar.weeks;
 }
 
-function buildSvg(data) {
-  const calendar = data.user.contributionsCollection.contributionCalendar;
-  
-  // Initialize 53x7 grid
-  const grid = Array.from({ length: 53 }, () => 
-    Array.from({ length: 7 }, () => ({
-      color: COLORS.NONE,
-      contributionLevel: 'NONE'
-    }))
-  );
+// ---------------- layout ----------------
+const CELL = 11;
+const GAP = 3;
+const STEP = CELL + GAP;
+const MARGIN = 12;
 
-  // Populate grid from calendar data
-  calendar.weeks.forEach((week, w) => {
-    if (w < 53) {
-      week.contributionDays.forEach(day => {
-        const r = day.weekday;
-        if (r >= 0 && r < 7) {
-          const level = day.contributionLevel || 'NONE';
-          grid[w][r] = {
-            color: COLORS[level] || day.color || COLORS.NONE,
-            contributionLevel: level
-          };
-        }
-      });
-    }
+// brand palette — crimson / black / cream, matching the rest of the profile
+const BG = "#0d1117";
+const CELL_COLORS = {
+  NONE: "#161b22",
+  FIRST_QUARTILE: "#3a0d12",
+  SECOND_QUARTILE: "#6e1620",
+  THIRD_QUARTILE: "#a41f2b",
+  FOURTH_QUARTILE: "#e63946",
+};
+const SNAKE_COLOR = "#f5e9dc"; // cream, so it reads clearly against crimson cells
+const SNAKE_LENGTH = 8; // number of body segments
+const DURATION = 24; // seconds for one full loop across the grid
+
+// weekIndex -> [dayAtWeekday0, dayAtWeekday1, ... dayAtWeekday6] (null if no data, e.g. partial weeks)
+function buildGrid(weeks) {
+  return weeks.map((w) => {
+    const col = new Array(7).fill(null);
+    w.contributionDays.forEach((d) => {
+      col[d.weekday] = {
+        count: d.contributionCount,
+        level: d.contributionLevel,
+        date: d.date,
+      };
+    });
+    return col;
   });
+}
 
-  // Calculate Serpentine Hamiltonian Path (with virtual off-screen padding)
-  const pathPoints = [];
-  
-  // 6 virtual points before (off-screen)
-  for (let r = -6; r < 0; r++) {
-    pathPoints.push({ c: 0, r });
-  }
+function cellCenter(weekIndex, weekday) {
+  const x = MARGIN + weekIndex * STEP + CELL / 2;
+  const y = MARGIN + weekday * STEP + CELL / 2;
+  return [x, y];
+}
 
-  // Grid traversal
-  for (let c = 0; c < 53; c++) {
-    if (c % 2 === 0) {
-      for (let r = 0; r < 7; r++) {
-        pathPoints.push({ c, r });
-      }
-    } else {
-      for (let r = 6; r >= 0; r--) {
-        pathPoints.push({ c, r });
-      }
-    }
-  }
-
-  // 6 virtual points after (off-screen)
-  for (let r = 7; r <= 12; r++) {
-    pathPoints.push({ c: 52, r });
-  }
-
-  // Convert points to SVG Path
-  const dParts = [];
-  pathPoints.forEach((pt, i) => {
-    const x = pt.c * 12 + 25;
-    const y = pt.r * 12 + 25;
-    if (i === 0) {
-      dParts.push(`M ${x} ${y}`);
-    } else {
-      dParts.push(`L ${x} ${y}`);
-    }
+// serpentine (boustrophedon) traversal: down one column, up the next, etc.
+// this is ONLY used to move the snake — it never touches cell color.
+function buildSnakePath(grid) {
+  const points = [];
+  grid.forEach((col, i) => {
+    const rowOrder = i % 2 === 0 ? [0, 1, 2, 3, 4, 5, 6] : [6, 5, 4, 3, 2, 1, 0];
+    rowOrder.forEach((rowIdx) => {
+      if (col[rowIdx]) points.push(cellCenter(i, rowIdx));
+    });
   });
-  const pathD = dParts.join(' ');
+  return points;
+}
 
-  const totalSteps = pathPoints.length - 1;
-  const pathLength = totalSteps * 12; // 4584px
-  const snakeLength = 6 * 12; // 72px (6 cells long)
+function pointsToPathD(points) {
+  return points
+    .map(([x, y], i) => `${i === 0 ? "M" : "L"}${x.toFixed(2)},${y.toFixed(2)}`)
+    .join(" ");
+}
 
-  // Draw Grid Rects
-  let rectsStr = '';
-  for (let c = 0; c < 53; c++) {
-    for (let r = 0; r < 7; r++) {
-      const cell = grid[c][r];
-      rectsStr += `    <rect id="cell-${c}-${r}" x="${c * 12 + 20}" y="${r * 12 + 20}" width="10" height="10" rx="2" ry="2" fill="${cell.color}" />\n`;
-    }
+function renderGridSVG(grid) {
+  const cells = [];
+  grid.forEach((col, i) => {
+    col.forEach((day, j) => {
+      if (!day) return;
+      const x = MARGIN + i * STEP;
+      const y = MARGIN + j * STEP;
+      const color = CELL_COLORS[day.level] || CELL_COLORS.NONE;
+      cells.push(
+        `<rect x="${x}" y="${y}" width="${CELL}" height="${CELL}" rx="2" ry="2" fill="${color}"><title>${day.date}: ${day.count} contributions</title></rect>`
+      );
+    });
+  });
+  return cells.join("\n");
+}
+
+function renderSnakeSegments() {
+  const segs = [];
+  for (let s = 0; s < SNAKE_LENGTH; s++) {
+    const beginOffset = (-(s / SNAKE_LENGTH) * DURATION).toFixed(2);
+    const opacity = Math.max(0.15, 1 - s / (SNAKE_LENGTH * 1.3)).toFixed(2);
+    segs.push(`
+    <rect x="-4" y="-4" width="8" height="8" rx="2" ry="2" fill="${SNAKE_COLOR}" opacity="${opacity}">
+      <animateMotion dur="${DURATION}s" begin="${beginOffset}s" repeatCount="indefinite" rotate="auto">
+        <mpath href="#snakePath" xlink:href="#snakePath"/>
+      </animateMotion>
+    </rect>`);
   }
-
-  // Final SVG Output (Decorative Snake Overlay traversing without eating cells)
-  return `<?xml version="1.0" encoding="utf-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 674 122" width="674" height="122">
-  <defs>
-    <linearGradient id="snake-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#e63946" />
-      <stop offset="100%" stop-color="#b91c1c" />
-    </linearGradient>
-    <style>
-      svg {
-        background-color: #0d1117;
-        border-radius: 6px;
-      }
-      .snake-body {
-        stroke-dasharray: ${snakeLength} ${pathLength};
-        stroke-dashoffset: ${snakeLength};
-        animation: slither 15s linear infinite;
-      }
-      @keyframes slither {
-        to {
-          stroke-dashoffset: -${pathLength - snakeLength};
-        }
-      }
-    </style>
-  </defs>
-
-  <!-- Background -->
-  <rect width="100%" height="100%" fill="#0d1117" rx="6" ry="6" />
-
-  <!-- Contribution Grid (Static Colors) -->
-  <g>
-${rectsStr}  </g>
-
-  <!-- Snake Path and Body -->
-  <g>
-    <path id="snake-path" d="${pathD}" fill="none" stroke="none" />
-    <path class="snake-body" d="${pathD}" fill="none" stroke="url(#snake-grad)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
-  </g>
-
-  <!-- Snake Head -->
-  <g>
-    <g>
-      <animateMotion dur="15s" repeatCount="indefinite" rotate="auto" calcMode="linear" path="${pathD}" />
-      <circle r="4.5" fill="#e63946" />
-      <circle cx="1.5" cy="-1.5" r="0.9" fill="white" />
-      <circle cx="1.5" cy="1.5" r="0.9" fill="white" />
-      <circle cx="2.0" cy="-1.5" r="0.5" fill="black" />
-      <circle cx="2.0" cy="1.5" r="0.5" fill="black" />
-    </g>
-  </g>
-</svg>
-`;
+  return segs.join("\n");
 }
 
 async function main() {
-  console.log(`Generating contribution snake for user: ${USERNAME}`);
-  const data = await fetchContributions();
-  
-  console.log('Building SVG animation...');
-  const svg = buildSvg(data);
-  
-  const distDir = path.resolve('dist');
-  if (!fs.existsSync(distDir)) {
-    fs.mkdirSync(distDir, { recursive: true });
-  }
-  
-  const outputPath = path.join(distDir, 'github-contribution-grid-snake-dark.svg');
-  fs.writeFileSync(outputPath, svg, 'utf-8');
-  console.log(`Successfully generated contribution snake SVG at: ${outputPath}`);
+  const weeks = await fetchContributions(GITHUB_USER);
+  const grid = buildGrid(weeks);
+
+  const width = MARGIN * 2 + grid.length * STEP;
+  const height = MARGIN * 2 + 7 * STEP;
+
+  const pathPoints = buildSnakePath(grid);
+  const pathD = pointsToPathD(pathPoints);
+
+  const svg = `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <rect x="0" y="0" width="${width}" height="${height}" fill="${BG}" rx="6"/>
+  <path id="snakePath" d="${pathD}" fill="none" stroke="none"/>
+  <g id="grid">
+${renderGridSVG(grid)}
+  </g>
+  <g id="snake">
+${renderSnakeSegments()}
+  </g>
+</svg>`;
+
+  mkdirSync("dist", { recursive: true });
+  writeFileSync("dist/github-contribution-grid-snake-dark.svg", svg);
+  console.log(
+    `Wrote dist/github-contribution-grid-snake-dark.svg — ${grid.length} weeks, ${pathPoints.length} cells in path`
+  );
 }
 
-main().catch(console.error);
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
