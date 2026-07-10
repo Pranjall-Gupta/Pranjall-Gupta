@@ -73,6 +73,7 @@ const CELL_COLORS = {
 const SNAKE_COLOR = "#f5e9dc"; // cream, so it reads clearly against crimson cells
 const SNAKE_LENGTH = 8; // number of body segments
 const DURATION = 24; // seconds for one full loop across the grid
+const SEGMENT_GAP = 0.28; // seconds each segment trails behind the one ahead of it
 
 // weekIndex -> [dayAtWeekday0, dayAtWeekday1, ... dayAtWeekday6] (null if no data, e.g. partial weeks)
 function buildGrid(weeks) {
@@ -133,7 +134,7 @@ function renderGridSVG(grid) {
 function renderSnakeSegments() {
   const segs = [];
   for (let s = 0; s < SNAKE_LENGTH; s++) {
-    const beginOffset = (-(s / SNAKE_LENGTH) * DURATION).toFixed(2);
+    const beginOffset = (-(s * SEGMENT_GAP)).toFixed(2);
     const opacity = Math.max(0.15, 1 - s / (SNAKE_LENGTH * 1.3)).toFixed(2);
     segs.push(`
     <rect x="-4" y="-4" width="8" height="8" rx="2" ry="2" fill="${SNAKE_COLOR}" opacity="${opacity}">
